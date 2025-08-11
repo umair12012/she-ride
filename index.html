@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>She - Female Ride Platform</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>She - Female Ride Platform</title>
 
-  <style>
-    body {
-      scroll-behavior: smooth;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #fff;
-    }
-     #preloader {
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<!-- AOS Animations -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+<style>
+  /* --- Preloader --- */
+  #preloader {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #e91e63; /* Pink background */
+    background-color: #e91e63; /* Pink */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,11 +29,10 @@
     pointer-events: none;
   }
   .spinner {
-    border: 6px solid #fce4ec; /* Light pink */
-    border-top: 6px solid white; /* White spinner */
+    border: 6px solid #fce4ec;
+    border-top: 6px solid white;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 50px; height: 50px;
     animation: spin 1s linear infinite;
   }
   @keyframes spin {
@@ -42,897 +40,585 @@
     100% { transform: rotate(360deg); }
   }
 
-    /* Navbar Styles */
+  /* --- Body and fonts --- */
+  body {
+    scroll-behavior: smooth;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 56px; /* For fixed top navbar */
+  }
+
+  /* --- Navbar --- */
+  .navbar {
+    background-color: #e91e63 !important;
+  }
+  .navbar a {
+    color: white !important;
+    font-weight: bold;
+  }
+  /* Desktop Navbar fixed top */
+  @media (min-width: 768px) {
     .navbar {
-      background-color: #e91e63 !important;
-      transition: background-color 0.4s ease, padding 0.4s ease;
-      padding: 1rem 1rem;
       position: fixed;
-      width: 100%;
-      z-index: 1100;
+      top: 0; left: 0; right: 0;
+      z-index: 1030;
     }
-
-    .navbar.scrolled {
-      background-color: #c2185b !important;
-      padding: 0.5rem 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    #mobileBottomNav {
+      display: none !important;
     }
-
-    .navbar a {
-      color: white !important;
-      font-weight: bold;
-    }
-
-    /* Bottom Mobile Toggler Button */
-    #mobileBottomToggler {
+  }
+  /* Mobile Navbar fixed bottom with toggle */
+  @media (max-width: 767.98px) {
+    nav.navbar.navbar-expand-lg.navbar-dark {
       display: none;
     }
-
-    @media (max-width: 768px) {
-      /* Hide default navbar toggler */
-      .navbar-toggler {
-        display: none;
-      }
-
-      #mobileBottomToggler {
-        display: flex;
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1200;
-        background: #e91e63;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-        cursor: pointer;
-        border: none;
-        transition: background-color 0.3s ease;
-      }
-
-      #mobileBottomToggler:hover {
-        background: #c2185b;
-      }
-
-      #mobileBottomToggler i {
-        color: white;
-        font-size: 30px;
-        user-select: none;
-      }
-
-      /* Nav menu styles */
-      #navMenu {
-        background: white;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: 75%;
-        max-width: 320px;
-        box-shadow: -2px 0 12px rgba(0, 0, 0, 0.3);
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        z-index: 1150;
-        padding-top: 70px;
-      }
-
-      #navMenu.show {
-        transform: translateX(0);
-      }
-
-      #navMenu .nav-link {
-        color: #e91e63 !important;
-        font-weight: 600;
-        padding: 1rem 1.5rem;
-        font-size: 1.2rem;
-        border-bottom: 1px solid #f0f0f0;
-      }
-
-      #navMenu .nav-link:hover {
-        background-color: #fce4ec;
-        color: #c2185b !important;
-      }
-
-      .navbar-nav {
-        flex-direction: column;
-      }
-    }
-
-    @media (min-width: 769px) {
-      #mobileBottomToggler {
-        display: none !important;
-      }
-    }
-
-    /* Hero Section with real img for responsiveness */
-    #heroCarousel {
-      margin-top: 56px;
-      position: relative;
-      overflow: hidden;
-      max-height: 80vh;
-    }
-
-    #heroCarousel .carousel-item {
-      position: relative;
-      display: flex !important;
-      justify-content: center;
-      align-items: center;
-      height: 80vh;
-      min-height: 300px;
-    }
-
-    #heroCarousel .carousel-item img {
-      max-height: 100%;
-      max-width: 100%;
-      object-fit: contain;
-      user-select: none;
-      pointer-events: none;
-      animation: zoomIn 15s ease-in-out infinite;
-    }
-
-    #heroCarousel .carousel-caption {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 90%;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      user-select: none;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-    }
-
-    #heroCarousel .carousel-caption h1 {
-      font-size: calc(2rem + 2vw);
-      font-weight: 700;
-      margin-bottom: 15px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: slideInText 1s forwards 1s;
-    }
-
-    #heroCarousel .carousel-caption p {
-      font-size: calc(1rem + 0.5vw);
-      margin-bottom: 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: slideInText 1s forwards 1.3s;
-    }
-
-    #heroCarousel .btn-custom {
-      background: #e91e63;
-      border: none;
-      padding: 12px 30px;
-      font-size: calc(0.9rem + 0.3vw);
-      border-radius: 50px;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 6px 12px rgba(233, 30, 99, 0.5);
-      transition: all 0.3s ease;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: slideInButton 1s forwards 1.6s;
-      user-select: none;
-    }
-
-    #heroCarousel .btn-custom:hover {
-      background: #c2185b;
-      transform: translateY(-3px);
-    }
-
-    @keyframes zoomIn {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    @keyframes slideInText {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideInButton {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Section Titles */
-    h2.section-title {
-      color: #e91e63;
-      text-align: center;
-      margin-bottom: 20px;
-      user-select: none;
-    }
-
-    /* About, Why Choose Us, Contact, Register Padding */
-    .about,
-    .why-choose-us,
-    .contact,
-    .register {
-      padding: 40px 0;
-    }
-
-    /* Buttons */
-    .btn-pink {
-      background: #e91e63;
-      color: white;
-      border: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn-pink:hover {
-      background: #c2185b;
-      color: white;
-    }
-
-    /* Form Container */
-    .container-form {
-      max-width: 500px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      margin: 0 auto;
-    }
-
-    /* Why Choose Us Boxes */
-    .why-choose-us .icon-box {
-      text-align: center;
-      padding: 20px;
-      border-radius: 10px;
-      background: #fff;
-      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      cursor: default;
-      user-select: none;
-    }
-
-    .why-choose-us .icon-box:hover {
-      transform: translateY(-10px);
-    }
-
-    .why-choose-us .icon-box i {
-      font-size: 2.5rem;
-      color: #e91e63;
-      margin-bottom: 15px;
-    }
-
-    .why-choose-us .icon-box h4 {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .why-choose-us .icon-box p {
-      font-size: 1rem;
-      color: #555;
-    }
-
-    /* Footer Styling */
-    footer {
-      background: #e91e63;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-      font-size: 0.9rem;
-      user-select: none;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: 500;
-      transition: text-decoration 0.3s ease;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 576px) {
-      .container {
-        padding: 0 15px;
-      }
-
-      h2.section-title {
-        font-size: 1.8rem;
-      }
-    }
-
-    /* About Section Stylish Text Logo */
-    .about .logo-text {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #e91e63;
-      text-align: center;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    @media (max-width: 576px) {
-      .about .logo-text {
-        font-size: 2rem;
-      }
-    }
-    @media (max-width: 400px) {
-      .about .logo-text {
-        font-size: 1.5rem;
-      }
-    }
-
-    /* About Paragraph and List */
-    .about p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 15px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      user-select: text;
-    }
-
-    .about ul {
-      list-style-type: none;
-      padding: 0;
-      max-width: 400px;
-      margin: 0 auto;
-      user-select: text;
-    }
-
-    .about ul li {
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-
-    .about ul li i {
-      color: #e91e63;
-      margin-right: 10px;
-    }
-
-    /* Stylish popup modal for download */
-    #popupModal {
+    #mobileBottomNav {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
-      background: white;
-      border-radius: 15px;
-      padding: 30px 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      text-align: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s ease;
-      z-index: 1500;
-      max-width: 320px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    #popupModal.show {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    #popupModal h3 {
-      color: #e91e63;
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    #popupModal p {
-      font-size: 1rem;
-      margin-bottom: 25px;
-      color: #333;
-    }
-    #popupModal button.close-btn {
+      bottom: 0; left: 0; right: 0;
       background: #e91e63;
-      color: white;
+      z-index: 1040;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 56px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+    }
+    #mobileBottomNav button {
+      background: transparent;
       border: none;
-      padding: 8px 20px;
-      font-size: 1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+      color: white;
+      font-size: 1.5rem;
     }
-    #popupModal button.close-btn:hover {
-      background: #c2185b;
-    }
-
-    /* Registration Section */
-    #register {
-      padding: 80px 15px 60px;
-      background: #fff0f6;
-      color: #880e4f;
-    }
-    #register h2 {
+    #mobileBottomNav .menu-items {
+      position: fixed;
+      bottom: 56px;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 -2px 15px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
       text-align: center;
-      font-weight: 700;
-      margin-bottom: 30px;
+    }
+    #mobileBottomNav .menu-items.show {
+      display: flex;
+    }
+    #mobileBottomNav .menu-items a {
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+      color: #e91e63;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    #mobileBottomNav .menu-items a:last-child {
+      border-bottom: none;
+    }
+  }
+
+  /* --- Hero Section --- */
+  #heroCarousel {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #heroCarousel .carousel-item {
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    animation: zoomIn 20s ease-in-out infinite;
+  }
+  #heroCarousel .carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    max-width: 90%;
+  }
+  #heroCarousel .carousel-caption h1 {
+    font-size: calc(2rem + 2vw);
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    margin-bottom: 15px;
+  }
+  #heroCarousel .carousel-caption p {
+    font-size: calc(1rem + 0.5vw);
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+  }
+  #heroCarousel .btn-custom {
+    background: #e91e63;
+    border: none;
+    padding: 10px 25px;
+    font-size: calc(0.9rem + 0.3vw);
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(233,30,99,0.5);
+    transition: all 0.3s ease;
+  }
+  #heroCarousel .btn-custom:hover {
+    background: #c2185b;
+  }
+  @keyframes zoomIn {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* Responsive Hero */
+  @media (max-width: 992px) {
+    #heroCarousel .carousel-caption h1 {
       font-size: 2.5rem;
     }
-    #register form {
-      max-width: 450px;
-      margin: auto;
+  }
+  @media (max-width: 576px) {
+    #heroCarousel .carousel-caption h1 {
+      font-size: 1.8rem;
     }
-    #register form .form-control {
-      margin-bottom: 15px;
-      border: 2px solid #e91e63;
-      border-radius: 8px;
-      padding: 10px 15px;
-      font-size: 1rem;
-    }
-    #register form button {
-      background: #e91e63;
-      color: white;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    #register form button:hover {
-      background: #c2185b;
-    }
-  </style>
+  }
+
+  /* --- Sections --- */
+  section {
+    padding: 60px 15px;
+  }
+  .section-title {
+    color: #e91e63;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  /* About Section */
+  .about .logo {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto 20px;
+  }
+  .about p, .about ul {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+  .about ul {
+    list-style: none;
+    padding: 0;
+  }
+  .about ul li {
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .about ul li i {
+    color: #e91e63;
+    margin-right: 10px;
+  }
+
+  /* Why Choose Us */
+  .why-choose-us .icon-box {
+    text-align: center;
+    padding: 25px 15px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  .why-choose-us .icon-box:hover {
+    transform: translateY(-10px);
+  }
+  .why-choose-us .icon-box i {
+    font-size: 3rem;
+    color: #e91e63;
+    margin-bottom: 15px;
+  }
+  .why-choose-us .icon-box h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .why-choose-us .icon-box p {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  /* Contact & Registration Forms */
+  .container-form {
+    max-width: 480px;
+    margin: 0 auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  .btn-pink {
+    background: #e91e63;
+    color: white;
+    border: none;
+    font-weight: 700;
+  }
+  .btn-pink:hover {
+    background: #c2185b;
+    color: white;
+  }
+
+  /* Footer */
+  footer {
+    background: #e91e63;
+    color: white;
+    padding: 20px 15px;
+    text-align: center;
+    font-weight: 500;
+  }
+  footer a {
+    color: white;
+    margin: 0 8px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  footer .credit {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+
+</style>
 </head>
 <body>
 
-   <!-- Preloader -->
+<!-- Preloader -->
 <div id="preloader">
   <div class="spinner"></div>
 </div>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" role="navigation" aria-label="Main navigation">
-    <div class="container">
-      <a class="navbar-brand" href="#home" tabindex="1">She-Ride</a>
 
-      <!-- Default toggler hidden on mobile -->
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navMenu"
-        aria-controls="navMenu"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#home" tabindex="2">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about" tabindex="3">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#why-choose-us" tabindex="4">Why Choose Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact" tabindex="5">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="#register" tabindex="6">Registration</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Bottom navbar toggler for mobile -->
-  <button
-    id="mobileBottomToggler"
-    aria-label="Toggle navigation"
-    aria-expanded="false"
-    aria-controls="navMenu"
-    tabindex="7"
-  >
-    <i class="bi bi-list"></i>
-  </button>
-
-  <!-- Hero Section -->
-  <div
-    id="heroCarousel"
-    class="carousel slide carousel-fade"
-    data-bs-ride="carousel"
-    data-bs-interval="5000"
-    role="region"
-    aria-label="Hero Section"
-    tabindex="0"
-  >
-    <div class="carousel-inner">
-      <div class="carousel-item active" aria-hidden="false" tabindex="-1">
-        <img
-          src="women1.jpg"
-          alt="Female bike riding with passenger"
-          draggable="false"
-          loading="lazy"
-        />
-        <div class="carousel-caption">
-          <h1>Ride with Freedom</h1>
-          <p>Experience the joy of riding across Pakistan.</p>
-          <button
-            class="btn btn-custom"
-            tabindex="8"
-            id="downloadBtn"
-            type="button"
-            aria-label="Download app"
-          >
-            Download App
-          </button>
-        </div>
-      </div>
-    </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#heroCarousel"
-      data-bs-slide="prev"
-      aria-label="Previous Slide"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<!-- Desktop Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#heroCarousel">She</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenuDesktop" aria-controls="navMenuDesktop" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#heroCarousel"
-      data-bs-slide="next"
-      aria-label="Next Slide"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </button>
-  </div>
-
-  <!-- About Section -->
-  <section id="about" class="about bg-light" data-aos="fade-up" data-aos-duration="1000" tabindex="0">
-    <div class="container">
-      <h2 class="section-title">About Us</h2>
-      <div class="logo-text">She-Ride</div>
-      <p class="text-center">
-        "She" is Pakistan’s first female-only ride platform, offering safe and empowering rides from 7 AM to 9
-        PM daily across all cities. Launched in 2023, we ensure verified drivers and real-time tracking for
-        women’s safety.
-      </p>
-      <ul class="text-center">
-        <li><i class="bi bi-check-circle"></i>100% Female-Only Rides</li>
-        <li><i class="bi bi-check-circle"></i>Verified Drivers</li>
-        <li><i class="bi bi-check-circle"></i>7 AM - 9 PM Service</li>
+    <div class="collapse navbar-collapse" id="navMenuDesktop">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#heroCarousel">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#why-choose-us">Why Choose Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="#register">Registration</a></li>
       </ul>
     </div>
-  </section>
-
-  <!-- Why Choose Us Section -->
-  <section
-    id="why-choose-us"
-    class="why-choose-us"
-    data-aos="fade-up"
-    data-aos-duration="1000"
-    tabindex="0"
-  >
-    <div class="container">
-      <h2 class="section-title">Why Choose Us</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="icon-box" tabindex="0">
-            <i class="bi bi-shield-lock"></i>
-            <h4>Safety First</h4>
-            <p>Secure rides with verified female drivers only.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-          <div class="icon-box" tabindex="0">
-            <i class="bi bi-people"></i>
-            <h4>Empowering Community</h4>
-            <p>Supportive network for women riders and drivers.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
-          <div class="icon-box" tabindex="0">
-            <i class="bi bi-clock-history"></i>
-            <h4>Reliable Service</h4>
-            <p>Available 7 AM - 9 PM across Pakistan.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact" data-aos="fade-up" data-aos-duration="1000" tabindex="0">
-    <div class="container">
-      <h2 class="section-title">Contact Us</h2>
-      <div class="container-form">
-        <form>
-          <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Your Name" />
-          </div>
-          <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Your Email" />
-          </div>
-          <div class="mb-3">
-            <textarea class="form-control" placeholder="Your Message"></textarea>
-          </div>
-          <button type="submit" class="btn btn-pink w-100">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Registration Section -->
-  <section id="register" class="register" data-aos="fade-up" data-aos-duration="1000" tabindex="0">
-    <div class="container">
-      <h2 class="section-title">Register as Female Driver or Rider</h2>
-      <div class="container-form">
-        <form id="registerForm">
-          <div class="mb-3">
-            <input
-              type="text"
-              id="name"
-              class="form-control"
-              placeholder="Full Name"
-              required
-              aria-label="Full Name"
-              tabindex="9"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              type="text"
-              id="cnic"
-              class="form-control"
-              placeholder="CNIC Number"
-              required
-              aria-label="CNIC Number"
-              tabindex="10"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              value="Female"
-              disabled
-              aria-label="Gender Female"
-              tabindex="-1"
-            />
-          </div>
-          <div class="mb-3">
-            <select id="role" class="form-control" required aria-label="Select Role" tabindex="11">
-              <option value="">Select Role</option>
-              <option value="Driver">Driver</option>
-              <option value="Rider">Rider</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <input
-              type="tel"
-              id="phone"
-              class="form-control"
-              placeholder="Phone Number"
-              required
-              aria-label="Phone Number"
-              tabindex="12"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              type="email"
-              id="email"
-              class="form-control"
-              placeholder="Email"
-              required
-              aria-label="Email"
-              tabindex="13"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              type="password"
-              id="password"
-              class="form-control"
-              placeholder="Password"
-              required
-              aria-label="Password"
-              tabindex="14"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              type="file"
-              id="profilePic"
-              class="form-control"
-              accept="image/*"
-              required
-              aria-label="Profile Picture"
-              tabindex="15"
-            />
-          </div>
-          <button type="submit" class="btn btn-pink w-100" tabindex="16">Register</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 She Ride Platform. All Rights Reserved.</p>
-      <p>
-        Made with ❤️ by
-        <a
-          href="https://instagram.com/umair"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram Profile of Umair"
-          tabindex="17"
-          >Umair</a
-        >
-      </p>
-      <a href="#about" tabindex="18">About</a> |
-      <a href="#contact" tabindex="19">Contact</a> |
-      <a href="#privacy" tabindex="20">Privacy Policy</a> |
-      <a href="#terms" tabindex="21">Terms of Service</a>
-    </div>
-  </footer>
-
-  <!-- Stylish Download Popup Modal -->
-  <div id="popupModal" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupDesc">
-    <h3 id="popupTitle">Coming Soon!</h3>
-    <p id="popupDesc">Our app download feature is launching shortly. Stay tuned for updates!</p>
-    <button class="close-btn" aria-label="Close popup">Close</button>
   </div>
+</nav>
 
-  <!-- Firebase and Bootstrap JS -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<!-- Mobile Bottom Navbar -->
+<nav id="mobileBottomNav" aria-label="Mobile navigation">
+  <button id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle menu">
+    <i class="bi bi-list"></i>
+  </button>
+  <div class="menu-items" id="mobileMenu" role="menu" aria-hidden="true">
+    <a href="#heroCarousel" role="menuitem">Home</a>
+    <a href="#about" role="menuitem">About</a>
+    <a href="#why-choose-us" role="menuitem">Why Choose Us</a>
+    <a href="#contact" role="menuitem">Contact</a>
+    <a href="#register" role="menuitem">Registration</a>
+  </div>
+</nav>
 
-  <script>
-    AOS.init();
+<!-- Hero Section -->
+<div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="8000" data-bs-touch="false">
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="background-image: url('./image/women1.jpg');">
+      <div class="carousel-caption" data-aos="fade-up" data-aos-delay="300">
+        <h1>Ride with Freedom</h1>
+        <p>Experience the joy of riding across Pakistan.</p>
+        <button class="btn btn-custom" id="downloadBtn">Download App</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    // Firebase Config (Replace with your config)
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "SENDER_ID",
-      appId: "APP_ID",
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    const storage = firebase.storage();
+<!-- About Section -->
+<section id="about" class="about bg-light" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="section-title">About Us</h2>
+  <img src="https://via.placeholder.com/150x150?text=She+Logo" alt="She Ride Logo" class="logo" />
+  <p>"She" is Pakistan’s first female-only ride platform, offering safe and empowering rides from 7 AM to 9 PM daily across all cities. Launched in 2023, we ensure verified drivers and real-time tracking for women’s safety.</p>
+  <ul>
+    <li><i class="bi bi-check-circle"></i>100% Female-Only Rides</li>
+    <li><i class="bi bi-check-circle"></i>Verified Drivers</li>
+    <li><i class="bi bi-check-circle"></i>7 AM - 9 PM Service</li>
+  </ul>
+</section>
 
-    // Compress Image
-    function compressImage(file) {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const img = new Image();
-          img.src = e.target.result;
-          img.onload = () => {
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
-            const MAX_WIDTH = 400;
-            const scaleSize = MAX_WIDTH / img.width;
-            canvas.width = MAX_WIDTH;
-            canvas.height = img.height * scaleSize;
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.7);
-          };
-        };
-        reader.readAsDataURL(file);
-      });
-    }
+<!-- Why Choose Us -->
+<section id="why-choose-us" class="why-choose-us" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="section-title">Why Choose Us</h2>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <i class="bi bi-shield-lock"></i>
+          <h4>Safety First</h4>
+          <p>Secure rides with verified female drivers only.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <i class="bi bi-people"></i>
+          <h4>Empowering Community</h4>
+          <p>Supportive network for women riders and drivers.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <i class="bi bi-clock-history"></i>
+          <h4>Reliable Service</h4>
+          <p>Available 7 AM - 9 PM across Pakistan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Register Form Submit
-    document.getElementById("registerForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const cnic = document.getElementById("cnic").value;
-      const role = document.getElementById("role").value;
-      const phone = document.getElementById("phone").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const file = document.getElementById("profilePic").files[0];
+<!-- Contact -->
+<section id="contact" class="contact" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="section-title">Contact Us</h2>
+  <div class="container-form">
+    <form>
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Your Name" required />
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" placeholder="Your Email" required />
+      </div>
+      <div class="mb-3">
+        <textarea class="form-control" placeholder="Your Message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-pink w-100">Send Message</button>
+    </form>
+  </div>
+</section>
 
-      try {
-        const userCred = await auth.createUserWithEmailAndPassword(email, password);
-        const user = userCred.user;
+<!-- Registration -->
+<section id="register" class="register bg-light" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="section-title">Female Registration</h2>
+  <div class="container-form">
+    <form id="registerForm">
+      <div class="mb-3"><input type="text" id="name" class="form-control" placeholder="Full Name" required></div>
+      <div class="mb-3"><input type="text" id="cnic" class="form-control" maxlength="13" placeholder="CNIC" required></div>
+      <div class="mb-3"><input type="text" class="form-control" value="Female" disabled></div>
+      <div class="mb-3">
+        <select id="role" class="form-control" required>
+          <option value="">Select Role</option>
+          <option value="Driver">Driver</option>
+          <option value="Rider">Rider</option>
+        </select>
+      </div>
+      <div class="mb-3"><input type="text" id="phone" class="form-control" placeholder="Phone Number" required></div>
+      <div class="mb-3"><input type="email" id="email" class="form-control" placeholder="Email" required></div>
+      <div class="mb-3"><input type="password" id="password" class="form-control" placeholder="Password" required></div>
+      <div class="mb-3"><input type="file" id="profilePic" class="form-control" accept="image/*" required></div>
+      <button type="submit" class="btn btn-pink w-100">Register</button>
+    </form>
+  </div>
+</section>
 
-        const compressedBlob = await compressImage(file);
-        const storageRef = storage.ref("profiles/" + user.uid + ".jpg");
-        await storageRef.put(compressedBlob);
-        const photoURL = await storageRef.getDownloadURL();
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>&copy; 2025 She Ride Platform. All Rights Reserved.</p>
+    <a href="#about">About</a> |
+    <a href="#contact">Contact</a> |
+    <a href="#privacy">Privacy Policy</a> |
+    <a href="#terms">Terms of Service</a>
+    <div class="credit mt-2">
+      Made by <a href="https://instagram.com/yourinstahandle" target="_blank" rel="noopener noreferrer" style="font-weight:bold; text-decoration: underline;">Umair</a>
+    </div>
+  </div>
+</footer>
 
-        await db.collection("users").doc(user.uid).set({
-          name,
-          cnic,
-          gender: "Female",
-          role,
-          phone,
-          email,
-          photoURL,
-          approved: false,
-          createdAt: new Date(),
-        });
+<!-- Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
 
-        alert("Registration successful! Await admin approval.");
-        document.getElementById("registerForm").reset();
-      } catch (err) {
-        alert(err.message);
-      }
-    });
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-    // Navbar scroll effect desktop
-    window.addEventListener("scroll", () => {
-      const navbar = document.querySelector(".navbar");
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-    });
+<script>
+  AOS.init();
 
-    // Mobile Bottom Menu Toggler (Fixed)
-    const mobileToggler = document.getElementById("mobileBottomToggler");
-    const navMenu = document.getElementById("navMenu");
-
-    mobileToggler.addEventListener("click", () => {
-      const expanded = mobileToggler.getAttribute("aria-expanded") === "true";
-      mobileToggler.setAttribute("aria-expanded", String(!expanded));
-      navMenu.classList.toggle("show");
-    });
-
-    // Close menu on link click (mobile)
-    navMenu.querySelectorAll(".nav-link").forEach((link) => {
-      link.addEventListener("click", () => {
-        if (navMenu.classList.contains("show")) {
-          navMenu.classList.remove("show");
-          mobileToggler.setAttribute("aria-expanded", "false");
-        }
-      });
-    });
-
-    // Hero download button action with popup
-    const downloadBtn = document.getElementById("downloadBtn");
-    const popupModal = document.getElementById("popupModal");
-    const closeBtn = popupModal.querySelector(".close-btn");
-
-    downloadBtn.addEventListener("click", () => {
-      popupModal.classList.add("show");
-      closeBtn.focus();
-    });
-
-    closeBtn.addEventListener("click", () => {
-      popupModal.classList.remove("show");
-      downloadBtn.focus();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && popupModal.classList.contains("show")) {
-        popupModal.classList.remove("show");
-        downloadBtn.focus();
-      }
-    });
-    window.addEventListener('load', () => {
+  // Preloader hide on load
+  window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     preloader.classList.add('hidden');
-    // Optionally remove from DOM after fade out:
     setTimeout(() => preloader.style.display = 'none', 500);
   });
-  </script>
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileMenuBtn.addEventListener('click', () => {
+    const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+    mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+    if (!isExpanded) {
+      mobileMenu.classList.add('show');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+    } else {
+      mobileMenu.classList.remove('show');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // Download button popup
+  const downloadBtn = document.getElementById('downloadBtn');
+  downloadBtn.addEventListener('click', () => {
+    showComingSoonPopup();
+  });
+
+  function showComingSoonPopup() {
+    // Create popup overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.right = 0;
+    overlay.style.bottom = 0;
+    overlay.style.background = 'rgba(0,0,0,0.6)';
+    overlay.style.zIndex = 10500;
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+
+    // Create popup box
+    const popup = document.createElement('div');
+    popup.style.background = '#fff';
+    popup.style.padding = '30px 40px';
+    popup.style.borderRadius = '12px';
+    popup.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+    popup.style.textAlign = 'center';
+    popup.style.maxWidth = '300px';
+    popup.style.fontFamily = 'Arial, sans-serif';
+
+    // Popup content
+    const message = document.createElement('p');
+    message.textContent = "Coming Soon!";
+    message.style.fontSize = '1.5rem';
+    message.style.color = '#e91e63';
+    message.style.marginBottom = '20px';
+    message.style.fontWeight = '700';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = "Close";
+    closeBtn.style.background = '#e91e63';
+    closeBtn.style.color = 'white';
+    closeBtn.style.border = 'none';
+    closeBtn.style.padding = '10px 25px';
+    closeBtn.style.borderRadius = '50px';
+    closeBtn.style.cursor = 'pointer';
+    closeBtn.style.fontWeight = '700';
+
+    closeBtn.addEventListener('click', () => {
+      document.body.removeChild(overlay);
+    });
+
+    popup.appendChild(message);
+    popup.appendChild(closeBtn);
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+  }
+
+  // Firebase Config (Replace with your actual config)
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "SENDER_ID",
+    appId: "APP_ID"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const storage = firebase.storage();
+
+  // Image compression function
+  function compressImage(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+          const MAX_WIDTH = 400;
+          const scaleSize = MAX_WIDTH / img.width;
+          canvas.width = MAX_WIDTH;
+          canvas.height = img.height * scaleSize;
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.7);
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Registration form submit
+  document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const cnic = document.getElementById('cnic').value.trim();
+    const role = document.getElementById('role').value;
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const file = document.getElementById('profilePic').files[0];
+
+    if (!file) {
+      alert('Please upload a profile picture.');
+      return;
+    }
+
+    try {
+      const userCred = await auth.createUserWithEmailAndPassword(email, password);
+      const user = userCred.user;
+
+      // Compress and upload profile image
+      const compressedBlob = await compressImage(file);
+      const storageRef = storage.ref('profiles/' + user.uid + '.jpg');
+      await storageRef.put(compressedBlob);
+      const photoURL = await storageRef.getDownloadURL();
+
+      await db.collection("users").doc(user.uid).set({
+        name,
+        cnic,
+        gender: "Female",
+        role,
+        phone,
+        email,
+        photoURL,
+        approved: false,
+        createdAt: new Date()
+      });
+
+      alert("Registration successful! Await admin approval.");
+      document.getElementById("registerForm").reset();
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+</script>
 
 </body>
-
 </html>
